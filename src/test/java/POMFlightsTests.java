@@ -163,5 +163,12 @@ public class POMFlightsTests {
         search_result_page.click_back_to_flights_button();
         search_result_page.verify_flights_table_displayed();
     }
+    @Test
+    @DisplayName("POM-12.  Проверить вход заблокированного пользователя (locked_out_user)")
+    void test12() {
+        FlightsLoginPage login_page = new FlightsLoginPage();
+        login_page.login("locked_out_user", "lock_pass2");
+        login_page.verify_wrong_blocking();
+    }
 }
 

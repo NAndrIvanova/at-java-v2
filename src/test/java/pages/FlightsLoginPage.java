@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FlightsLoginPage {
     SelenideElement Username, Password, LoginButton, Message;
-    String successMessage, errorMessage,emptyMessage;
+    String successMessage, errorMessage,emptyMessage,blockingMessage;
     public FlightsLoginPage() {
         Username = $("#username");
         Password = $("#password");
@@ -17,6 +17,7 @@ public class FlightsLoginPage {
         successMessage = "Вход в систему выполнен успешно! Загрузка...";
         errorMessage = "Неверное имя пользователя или пароль.";
         emptyMessage = "Username and Password are required.";
+        blockingMessage = "Пользователь заблокирован.";
     }
 
     public void login(String username, String password) {
@@ -34,6 +35,9 @@ public class FlightsLoginPage {
     }
     public void verify_wrong_empty() {
         Message.shouldHave(text(emptyMessage));
+    }
+    public void verify_wrong_blocking() {
+        Message.shouldHave(text(blockingMessage));
     }
 }
 
